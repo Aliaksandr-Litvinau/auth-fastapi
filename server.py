@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Form
 from fastapi.responses import Response
 from starlette.staticfiles import StaticFiles
 
@@ -15,5 +15,6 @@ def index_page():
 
 
 @app.post("/login")
-def get_success_login():
-    return Response("All right!!!")
+def get_success_login(email: str = Form(...), password: str = Form(...)):
+    return Response(f"Your username: {email}, password: {password}", media_type="text/html")
+
